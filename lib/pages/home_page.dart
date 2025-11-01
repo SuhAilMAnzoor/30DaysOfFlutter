@@ -12,7 +12,12 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text("Catalog App"), centerTitle: true),
       body: Center(
-        child: Container(child: Text("welcome to my App $days $name")),
+        child: Container(
+          height: 400,
+          width: 400,
+          color: Colors.green,
+          child: Container(height: 100, width: 100, color: Colors.red),
+        ),
       ),
       drawer: MyDrawer(),
     );
