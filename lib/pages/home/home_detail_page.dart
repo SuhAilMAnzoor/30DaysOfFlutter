@@ -12,7 +12,7 @@ class HomeDetailPage extends StatelessWidget {
     return SafeArea(
       bottom: false,
       child: Scaffold(
-        // // appBar: AppBar(),
+        appBar: AppBar(backgroundColor: Colors.transparent),
         bottomNavigationBar: Container(
           color: Colors.white,
           child: Padding(
@@ -30,8 +30,8 @@ class HomeDetailPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: 100,
-                  height: 50,
+                  width: 140,
+                  height: 40,
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ButtonStyle(
@@ -41,8 +41,11 @@ class HomeDetailPage extends StatelessWidget {
                       shape: MaterialStateProperty.all(const StadiumBorder()),
                     ),
                     child: Text(
-                      "Buy",
-                      style: TextStyle(color: MyTheme.creamColor),
+                      "Add to Cart",
+                      style: TextStyle(
+                        color: MyTheme.creamColor,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
@@ -54,7 +57,7 @@ class HomeDetailPage extends StatelessWidget {
         body: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(32.0),
+              padding: const EdgeInsets.symmetric(horizontal: 32),
               child: Hero(
                 tag: Key(catalog.id.toString()),
                 child: Image.network(catalog.image, height: 300),
@@ -69,7 +72,7 @@ class HomeDetailPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   color: Colors.white,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 64.0),
+                    padding: const EdgeInsets.only(top: 50.0),
                     child: Column(
                       children: [
                         Text(
@@ -86,6 +89,16 @@ class HomeDetailPage extends StatelessWidget {
                             fontSize: 16,
 
                             color: MyTheme.darkBluishColor,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(
+                            "asdjnsadkjsndjksandkjsandsjakdnsakjdnsajkdsjfisdfjdfisdufsdiufhsdiufhdsiufjdsfnjsfsdiufhdsiuhfiudshfiudshfdisufhsdiufhsdfiuhisdujdfdsiufhsdifusdjfoisdjfoisdjsddnasdkjsandkjnsadkjsandkjasdnksjcxjncic",
+                            style: Theme.of(
+                              context,
+                            ).textTheme.bodySmall?.copyWith(fontSize: 14),
                           ),
                         ),
                       ],

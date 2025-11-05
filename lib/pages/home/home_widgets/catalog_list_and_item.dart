@@ -36,13 +36,13 @@ class CatalogItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 14.0), // same as .py16()
+      padding: const EdgeInsets.symmetric(vertical: 14.0),
       child: Container(
-        height: 120, // same as .square(100)
+        height: 130,
         width: 70,
         decoration: BoxDecoration(
-          color: Colors.white, // same as .white
-          borderRadius: BorderRadius.circular(12), // same as .roundedLg
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.05),
@@ -74,36 +74,44 @@ class CatalogItem extends StatelessWidget {
                     catalog.desc,
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: ButtonBar(
-                      alignment: MainAxisAlignment.spaceBetween,
-                      buttonPadding: EdgeInsets.zero,
-                      children: [
-                        Text(
-                          "\$${catalog.price.toString()}",
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
+                  ButtonBar(
+                    alignment: MainAxisAlignment.spaceBetween,
+                    buttonPadding: EdgeInsets.zero,
+                    children: [
+                      Text(
+                        "\$${catalog.price.toString()}",
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 130,
+                        height: 40,
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 4.0),
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                MyTheme.darkBluishColor,
+                              ),
+                              shape: MaterialStateProperty.all(
+                                const StadiumBorder(),
+                              ),
+                            ),
+                            child: Text(
+                              "Add to Cart",
+                              style: TextStyle(
+                                color: MyTheme.creamColor,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                         ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                              MyTheme.darkBluishColor,
-                            ),
-                            shape: MaterialStateProperty.all(
-                              const StadiumBorder(),
-                            ),
-                          ),
-                          child: Text(
-                            "Buy",
-                            style: TextStyle(color: MyTheme.creamColor),
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ],
               ),
