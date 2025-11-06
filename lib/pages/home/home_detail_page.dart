@@ -13,8 +13,9 @@ class HomeDetailPage extends StatelessWidget {
       bottom: false,
       child: Scaffold(
         appBar: AppBar(backgroundColor: Colors.transparent),
+        backgroundColor: Theme.of(context).canvasColor,
         bottomNavigationBar: Container(
-          color: Colors.white,
+          color: Theme.of(context).cardColor,
           child: Padding(
             padding: const EdgeInsets.all(25.0),
             child: ButtonBar(
@@ -36,7 +37,7 @@ class HomeDetailPage extends StatelessWidget {
                     onPressed: () {},
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
-                        MyTheme.darkBluishColor,
+                        Theme.of(context).colorScheme.primary,
                       ),
                       shape: MaterialStateProperty.all(const StadiumBorder()),
                     ),
@@ -53,7 +54,6 @@ class HomeDetailPage extends StatelessWidget {
             ),
           ),
         ),
-        backgroundColor: MyTheme.creamColor,
         body: Column(
           children: [
             Padding(
@@ -70,7 +70,7 @@ class HomeDetailPage extends StatelessWidget {
                 edge: VxEdge.top,
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  color: Colors.white,
+                  color: Theme.of(context).cardColor,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 50.0),
                     child: Column(
@@ -80,7 +80,7 @@ class HomeDetailPage extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
-                            color: MyTheme.darkBluishColor,
+                            color: Theme.of(context).colorScheme.secondary,
                           ),
                         ),
                         Text(
@@ -88,7 +88,7 @@ class HomeDetailPage extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 16,
 
-                            color: MyTheme.darkBluishColor,
+                            color: Theme.of(context).colorScheme.secondary,
                           ),
                         ),
                         SizedBox(height: 10),
@@ -96,9 +96,9 @@ class HomeDetailPage extends StatelessWidget {
                           padding: const EdgeInsets.all(16.0),
                           child: Text(
                             "asdjnsadkjsndjksandkjsandsjakdnsakjdnsajkdsjfisdfjdfisdufsdiufhsdiufhdsiufjdsfnjsfsdiufhdsiuhfiudshfiudshfdisufhsdiufhsdfiuhisdujdfdsiufhsdifusdjfoisdjfoisdjsddnasdkjsandkjnsadkjsandkjasdnksjcxjncic",
-                            style: Theme.of(
-                              context,
-                            ).textTheme.bodySmall?.copyWith(fontSize: 14),
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.secondary,
+                            ),
                           ),
                         ),
                       ],

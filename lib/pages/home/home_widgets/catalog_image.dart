@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_catalog/widgets/themes.dart';
 
 class CatalogImage extends StatelessWidget {
   final String image;
@@ -13,7 +12,7 @@ class CatalogImage extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: Container(
           decoration: BoxDecoration(
-            color: MyTheme.creamColor,
+            color: Theme.of(context).canvasColor,
             borderRadius: BorderRadius.circular(12),
           ),
           child: Padding(

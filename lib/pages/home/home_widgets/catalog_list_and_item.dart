@@ -41,7 +41,7 @@ class CatalogItem extends StatelessWidget {
         height: 130,
         width: 70,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
@@ -67,12 +67,14 @@ class CatalogItem extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
-                      color: MyTheme.darkBluishColor,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                   Text(
                     catalog.desc,
-                    style: Theme.of(context).textTheme.bodySmall,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
                   ),
                   ButtonBar(
                     alignment: MainAxisAlignment.spaceBetween,
@@ -80,9 +82,10 @@ class CatalogItem extends StatelessWidget {
                     children: [
                       Text(
                         "\$${catalog.price.toString()}",
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
+                          color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
                       SizedBox(
@@ -94,7 +97,9 @@ class CatalogItem extends StatelessWidget {
                             onPressed: () {},
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(
-                                MyTheme.darkBluishColor,
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Theme.of(context).colorScheme.primary
+                                    : MyTheme.darkBluishColor,
                               ),
                               shape: MaterialStateProperty.all(
                                 const StadiumBorder(),

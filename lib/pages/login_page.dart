@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: Theme.of(context).canvasColor,
       child: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -41,7 +41,11 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 20.0),
               Text(
                 "Welcome $name",
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
               ),
               SizedBox(height: 20.0),
               Padding(
@@ -52,10 +56,40 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   children: [
                     TextFormField(
+                      style: TextStyle(
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.white
+                            : Colors.black,
+                      ),
                       decoration: InputDecoration(
                         hintText: "Enter Username",
+                        hintStyle: TextStyle(
+                          color: Theme.of(context).hintColor,
+                        ),
                         labelText: "Username",
+                        labelStyle: TextStyle(
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.onSurface.withOpacity(0.6),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                ? Colors.white
+                                : Colors.black,
+                          ),
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.grey),
+                        ),
+                        floatingLabelStyle: TextStyle(
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.white
+                              : Colors.black,
+                        ),
                       ),
+
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Username cannot be empty!";
@@ -70,10 +104,37 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(height: 20.0),
                     TextFormField(
                       obscureText: true,
+                      style: TextStyle(
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.white
+                            : Colors.black,
+                      ),
                       decoration: InputDecoration(
                         hintText: "Enter password",
+                        hintStyle: TextStyle(
+                          color: Theme.of(context).hintColor,
+                        ),
                         labelText: "Password",
+                        labelStyle: TextStyle(
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.onSurface.withOpacity(0.6),
+                        ),
+                        floatingLabelStyle: TextStyle(
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.white
+                              : Colors.black,
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.grey),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
                       ),
+
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Password cannot be empty!";
@@ -88,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: 40.0),
               Material(
-                color: Colors.deepPurple,
+                color: Theme.of(context).colorScheme.primary,
                 borderRadius: BorderRadius.circular(changeButton ? 50 : 8),
                 child: InkWell(
                   onTap: () {
@@ -102,7 +163,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: changeButton
                         ? Icon(
                             Icons.done,
-                            color: const Color.fromARGB(255, 172, 72, 72),
+                            color: Theme.of(context).colorScheme.primary,
                           )
                         : Text(
                             "Login",
