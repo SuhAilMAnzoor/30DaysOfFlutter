@@ -13,6 +13,92 @@ class CartPage extends StatelessWidget {
         title: Text("Cart"),
         centerTitle: true,
       ),
+      body: Column(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(32.0),
+              child: _CartList(),
+            ),
+          ),
+          // Divider(),
+          _CartTotal(),
+        ],
+      ),
+    );
+  }
+}
+
+class _CartTotal extends StatelessWidget {
+  const _CartTotal({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 200,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Text(
+            "\$9999",
+            style: TextStyle(
+              fontSize: 30,
+              // fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.secondary,
+            ),
+          ),
+          SizedBox(width: 30),
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("Buying not Supported yet")),
+                );
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(
+                  Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              child: Text(
+                "Buy",
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                  color: Colors.white,
+                  //fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _CartList extends StatefulWidget {
+  const _CartList({super.key});
+
+  @override
+  State<_CartList> createState() => __CartListState();
+}
+
+class __CartListState extends State<_CartList> {
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: 5,
+      itemBuilder: (context, index) => ListTile(
+        leading: Icon(Icons.done, color: Theme.of(context).iconTheme.color),
+        trailing: IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.remove_circle_outline,
+            color: Theme.of(context).iconTheme.color,
+          ),
+        ),
+        title: Text("Item 1", style: Theme.of(context).textTheme.bodyLarge),
+      ),
     );
   }
 }

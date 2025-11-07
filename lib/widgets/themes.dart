@@ -3,7 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class MyTheme {
+  // Colors
+  static Color creamColor = Color(0xfff5f5f5);
+  static Color darkcreamColor = Vx.gray900;
+  static Color darkBluishColor = Color(0xff403b58);
+  static Color lightBluishColor = Vx.indigo500;
+
   static ThemeData lightTheme(BuildContext context) => ThemeData(
+    brightness: Brightness.light,
     colorScheme: ColorScheme.light(
       primary: darkBluishColor,
       secondary: darkBluishColor,
@@ -43,13 +50,10 @@ class MyTheme {
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: lightBluishColor,
     ),
+    textTheme: Theme.of(
+      context,
+    ).textTheme.apply(bodyColor: Colors.white, displayColor: Colors.white),
 
     useMaterial3: true,
   );
-
-  // Colors
-  static Color creamColor = Color(0xfff5f5f5);
-  static Color darkcreamColor = Vx.gray900;
-  static Color darkBluishColor = Color(0xff403b58);
-  static Color lightBluishColor = Vx.indigo500;
 }
