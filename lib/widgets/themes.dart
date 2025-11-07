@@ -34,10 +34,11 @@ class MyTheme {
     fontFamily: GoogleFonts.lato().fontFamily,
     cardColor: Colors.black,
     canvasColor: darkcreamColor,
-    appBarTheme: const AppBarTheme(
+    appBarTheme: AppBarTheme(
       color: Colors.black,
       elevation: 0.0,
       iconTheme: IconThemeData(color: Colors.white),
+      titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: lightBluishColor,
