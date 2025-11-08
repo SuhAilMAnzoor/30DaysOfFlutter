@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,11 +6,6 @@ import 'package:flutter_catalog/models/catalog_model.dart';
 import 'package:flutter_catalog/pages/home/home_widgets/catalog_header.dart';
 import 'package:flutter_catalog/pages/home/home_widgets/catalog_list_and_item.dart';
 import 'package:flutter_catalog/utils/routes.dart';
-import 'package:flutter_catalog/widgets/drawer.dart';
-import 'package:flutter_catalog/widgets/item_widget.dart';
-import 'package:flutter_catalog/widgets/themes.dart';
-import 'dart:convert';
-
 import 'package:velocity_x/velocity_x.dart';
 
 class HomePage extends StatefulWidget {

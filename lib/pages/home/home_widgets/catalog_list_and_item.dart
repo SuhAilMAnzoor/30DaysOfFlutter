@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_catalog/models/cart_model.dart';
 import 'package:flutter_catalog/models/catalog_model.dart';
 import 'package:flutter_catalog/pages/home/home_detail_page.dart';
+import 'package:flutter_catalog/pages/home/home_widgets/add_to_cart.dart';
 import 'package:flutter_catalog/pages/home/home_widgets/catalog_image.dart';
-import 'package:flutter_catalog/widgets/themes.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class CatalogList extends StatelessWidget {
   const CatalogList({super.key});
@@ -96,7 +94,7 @@ class CatalogItem extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.only(right: 4.0),
                           // we make it a stateful widget so that's why we extract a new widget for this button
-                          child: _AddToCart(catalog: catalog),
+                          child: AddToCart(catalog: catalog),
                         ),
                       ),
                     ],
@@ -107,51 +105,6 @@ class CatalogItem extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _AddToCart extends StatefulWidget {
-  final Item catalog;
-  const _AddToCart({super.key, required this.catalog});
-
-  @override
-  State<_AddToCart> createState() => _AddToCartState();
-}
-
-class _AddToCartState extends State<_AddToCart> {
-  bool isAdded = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        setState(() {
-          isAdded = !isAdded;
-        });
-        final _catalog = CatalogModel();
-        final _cart = CartModel();
-        _cart.catalog = _catalog;
-        _cart.add(widget.catalog);
-      },
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(
-          Theme.of(context).brightness == Brightness.dark
-              ? Theme.of(context).colorScheme.primary
-              : MyTheme.darkBluishColor,
-        ),
-        shape: MaterialStateProperty.all(const StadiumBorder()),
-      ),
-      child: isAdded
-          ? Icon(Icons.done, color: Colors.white)
-          : Text(
-              "Add to Cart",
-              style: TextStyle(
-                color: MyTheme.creamColor,
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
     );
   }
 }

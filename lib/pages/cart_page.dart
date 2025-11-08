@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/models/cart_model.dart';
-import 'package:flutter_catalog/widgets/themes.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -31,8 +30,6 @@ class CartPage extends StatelessWidget {
 }
 
 class _CartTotal extends StatelessWidget {
-  const _CartTotal({super.key});
-
   @override
   Widget build(BuildContext context) {
     final _cart = CartModel();
@@ -89,22 +86,35 @@ class __CartListState extends State<_CartList> {
   final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: _cart.items.length,
-      itemBuilder: (context, index) => ListTile(
-        leading: Icon(Icons.done, color: Theme.of(context).iconTheme.color),
-        trailing: IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.remove_circle_outline,
-            color: Theme.of(context).iconTheme.color,
-          ),
-        ),
-        title: Text(
-          _cart.items[index].name,
-          style: Theme.of(context).textTheme.bodyLarge,
-        ),
-      ),
-    );
+    return _cart.items.isEmpty
+        ? Center(
+            child: Text(
+              "Buy items from the home page it's Empty!",
+              style: TextStyle(fontSize: 16),
+            ),
+          )
+        : ListView.builder(
+            itemCount: _cart.items.length,
+            itemBuilder: (context, index) => ListTile(
+              leading: Icon(
+                Icons.done,
+                color: Theme.of(context).iconTheme.color,
+              ),
+              trailing: IconButton(
+                onPressed: () {
+                  _cart.remove(_cart.items[index]);
+                  setState(() {});
+                },
+                icon: Icon(
+                  Icons.remove_circle_outline,
+                  color: Theme.of(context).iconTheme.color,
+                ),
+              ),
+              title: Text(
+                _cart.items[index].name,
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ),
+          );
   }
 }
