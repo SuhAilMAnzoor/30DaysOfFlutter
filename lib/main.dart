@@ -5,6 +5,9 @@ import 'package:flutter_catalog/pages/login_page.dart';
 import 'package:flutter_catalog/utils/routes.dart';
 import 'package:flutter_catalog/widgets/themes.dart';
 
+//NOTE: ONLY For Learning Purpose how things work with with bad code,
+// This is not good practice in cart and catalog model and also in cart page as well
+// catalog list and items  try to move to the next repo or branch to follow good practice.
 void main() {
   runApp(MyApp());
 }
