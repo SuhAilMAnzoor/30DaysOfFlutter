@@ -7,9 +7,6 @@ import 'package:flutter_catalog/utils/routes.dart';
 import 'package:flutter_catalog/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-// In this branch 26 remove all previous bad code in cart and catalog model and as well in cart page and add to cart widget and reset of files
-// Updating the state with Velocity x State Mangement,
-// converted StatefulWidget Screens into Stateless Screens, make all codes refactor accroding it velocity X
 void main() {
   runApp(VxState(store: MyStore(), child: MyApp()));
 }
