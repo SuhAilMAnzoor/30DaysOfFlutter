@@ -26,14 +26,9 @@ class CartModel {
   num get totalPrice =>
       items.fold(0, (total, current) => total + current.price);
 
-  // Add Item
-  // function is removed from here now we are adding items in AddMutation
-  // Refactor the code with state managment and velocity X
-
-  // Remove Item
-  void remove(Item item) {
-    _itemIds.remove(item.id);
-  }
+  // add and remove functions are with AddMutation and RemoveMutation to add functionliy with VxState.watch to rebuild the
+  // the UI instead setState, making each class stateful
+  // Now with Velocity X we are build the spefic part of UI to rebuild not whole build or complete screen rebild
 }
 
 class AddMutation extends VxMutation<MyStore> {
@@ -43,5 +38,16 @@ class AddMutation extends VxMutation<MyStore> {
   @override
   perform() {
     store?.cart._itemIds.add(item.id);
+  }
+}
+
+// Remove Item
+class RemoveMutation extends VxMutation<MyStore> {
+  final Item item;
+
+  RemoveMutation(this.item);
+  @override
+  perform() {
+    store?.cart._itemIds.remove(item.id);
   }
 }

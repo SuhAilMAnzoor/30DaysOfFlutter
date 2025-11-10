@@ -34,19 +34,29 @@ class CartPage extends StatelessWidget {
 class _CartTotal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // This is complete Build Widget
+    print("Build complete widget");
     final CartModel _cart = (VxState.store as MyStore).cart;
     return SizedBox(
       height: 200,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text(
-            "\$${_cart.totalPrice}",
-            style: TextStyle(
-              fontSize: 30,
-              // fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.secondary,
-            ),
+          VxConsumer(
+            notifications: {},
+            mutations: {RemoveMutation},
+            builder: (context, store, status) {
+              // rebuild this specfic part of UI not complete build Widget() (cart page) when remove the items from
+              print("Only rebuild the total price widget");
+              return Text(
+                "\$${_cart.totalPrice}",
+                style: TextStyle(
+                  fontSize: 30,
+                  // fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
+              );
+            },
           ),
           SizedBox(width: 30),
           SizedBox(
@@ -80,6 +90,7 @@ class _CartTotal extends StatelessWidget {
 class _CartList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    VxState.watch(context, on: [RemoveMutation]);
     final CartModel _cart = (VxState.store as MyStore).cart;
     return _cart.items.isEmpty
         ? Center(
@@ -96,10 +107,7 @@ class _CartList extends StatelessWidget {
                 color: Theme.of(context).iconTheme.color,
               ),
               trailing: IconButton(
-                onPressed: () {
-                  _cart.remove(_cart.items[index]);
-                  // setState(() {});
-                },
+                onPressed: () => RemoveMutation(_cart.items[index]),
                 icon: Icon(
                   Icons.remove_circle_outline,
                   color: Theme.of(context).iconTheme.color,
