@@ -34,7 +34,6 @@ class CartPage extends StatelessWidget {
 class _CartTotal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // This is complete Build Widget
     print("Build complete widget");
     final CartModel _cart = (VxState.store as MyStore).cart;
     return SizedBox(
@@ -46,13 +45,12 @@ class _CartTotal extends StatelessWidget {
             notifications: {},
             mutations: {RemoveMutation},
             builder: (context, store, status) {
-              // rebuild this specfic part of UI not complete build Widget() (cart page) when remove the items from
-              print("Only rebuild the total price widget");
+              // rebuild this specfic part of UI
+              //  print("Only rebuild the total price widget");
               return Text(
                 "\$${_cart.totalPrice}",
                 style: TextStyle(
                   fontSize: 30,
-                  // fontWeight: FontWeight.bold,
                   color: Theme.of(context).colorScheme.secondary,
                 ),
               );
@@ -74,10 +72,9 @@ class _CartTotal extends StatelessWidget {
               ),
               child: Text(
                 "Buy",
-                style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                  color: Colors.white,
-                  //fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.labelLarge?.copyWith(color: Colors.white),
               ),
             ),
           ),
