@@ -9,8 +9,11 @@ class CatalogImage extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(16.0),
         child: Container(
+          width:
+              MediaQuery.of(context).size.width *
+              (MediaQuery.of(context).size.width < 600 ? 0.4 : 0.2),
           decoration: BoxDecoration(
             color: Theme.of(context).canvasColor,
             borderRadius: BorderRadius.circular(12),
