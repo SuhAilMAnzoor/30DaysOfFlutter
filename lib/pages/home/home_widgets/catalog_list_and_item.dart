@@ -6,7 +6,7 @@ import 'package:flutter_catalog/pages/home/home_widgets/add_to_cart.dart';
 import 'package:flutter_catalog/pages/home/home_widgets/catalog_image.dart';
 
 class CatalogList extends StatelessWidget {
-  const CatalogList({super.key});
+  const CatalogList({super.key, required items});
 
   @override
   Widget build(BuildContext context) {

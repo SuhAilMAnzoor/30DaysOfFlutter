@@ -1,8 +1,7 @@
-import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart' hide Badge;
-import 'package:flutter/services.dart';
 import 'package:flutter_catalog/core/cart.dart';
+import 'package:flutter_catalog/core/home.dart';
 import 'package:flutter_catalog/models/catalog_model.dart';
 import 'package:flutter_catalog/pages/home/home_widgets/catalog_header.dart';
 import 'package:flutter_catalog/pages/home/home_widgets/catalog_list_and_item.dart';
@@ -12,45 +11,34 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:badges/badges.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  int days = 30;
-
   String name = "SohAil Mobile App Developer";
 
   @override
   void initState() {
     super.initState();
-    loadData();
-  }
-
-  loadData() async {
-    await Future.delayed(Duration(seconds: 2));
-    final catalogJson = await rootBundle.loadString(
-      "assets/files/catalog.json",
+    // Load data once when the page is created
+    Future.microtask(
+      () => Provider.of<HomeViewModel>(context, listen: false).loadData(),
     );
-    final decodedData = jsonDecode(catalogJson);
-    var productData = decodedData["products"];
-    CatalogModel.items = List.from(
-      productData,
-    ).map<Item>((item) => Item.fromMap(item)).toList();
-    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     //print("Rebuld Home page complee");
-    //final CartModel cart = Provider.of<CartModel>(context);
+    // final cart = Provider.of<CartModel>(context);
+    final homeViewModel = Provider.of<HomeViewModel>(context);
     return Scaffold(
       backgroundColor: Theme.of(context).canvasColor,
       floatingActionButton: Consumer<CartModel>(
         builder: (context, value, child) {
-          //  print("floatting count rebuild only");
+          // print("floatting count rebuild only");
           return Badge(
             badgeContent: Text(
               value.items.length.toString(),
@@ -77,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 16.0),
-                    child: CatalogList(),
+                    child: CatalogList(items: homeViewModel.items),
                   ),
                 )
               else
