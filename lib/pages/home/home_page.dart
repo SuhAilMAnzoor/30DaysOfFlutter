@@ -44,14 +44,16 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final CartModel cart = Provider.of<CartModel>(context);
+    //print("Rebuld Home page complee");
+    //final CartModel cart = Provider.of<CartModel>(context);
     return Scaffold(
       backgroundColor: Theme.of(context).canvasColor,
-      floatingActionButton: Builder(
-        builder: (BuildContext context) => Consumer(
-          builder: (context, value, child) => Badge(
+      floatingActionButton: Consumer<CartModel>(
+        builder: (context, value, child) {
+          //  print("floatting count rebuild only");
+          return Badge(
             badgeContent: Text(
-              cart.items.length.toString(),
+              value.items.length.toString(),
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
             child: FloatingActionButton(
@@ -61,8 +63,8 @@ class _HomePageState extends State<HomePage> {
               backgroundColor: Theme.of(context).colorScheme.primary,
               child: Icon(CupertinoIcons.cart, color: Colors.white),
             ),
-          ),
-        ),
+          );
+        },
       ),
       body: SafeArea(
         child: Container(
