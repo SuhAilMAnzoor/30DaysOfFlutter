@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_catalog/core/store.dart';
-import 'package:flutter_catalog/models/cart_model.dart';
-import 'package:velocity_x/velocity_x.dart';
+import 'package:flutter_catalog/core/cart.dart';
+import 'package:provider/provider.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -23,7 +22,6 @@ class CartPage extends StatelessWidget {
               child: _CartList(),
             ),
           ),
-          // Divider(),
           _CartTotal(),
         ],
       ),
@@ -35,20 +33,17 @@ class _CartTotal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print("Build complete widget");
-    final CartModel _cart = (VxState.store as MyStore).cart;
     return SizedBox(
       height: 200,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          VxConsumer(
-            notifications: {},
-            mutations: {RemoveMutation},
-            builder: (context, store, status) {
+          Consumer<CartModel>(
+            builder: (context, value, child) {
               // rebuild this specfic part of UI
-              //  print("Only rebuild the total price widget");
+              print("Only rebuild the total price widget");
               return Text(
-                "\$${_cart.totalPrice}",
+                "\$${value.totalPrice}",
                 style: TextStyle(
                   fontSize: 30,
                   color: Theme.of(context).colorScheme.secondary,
@@ -87,9 +82,8 @@ class _CartTotal extends StatelessWidget {
 class _CartList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    VxState.watch(context, on: [RemoveMutation]);
-    final CartModel _cart = (VxState.store as MyStore).cart;
-    return _cart.items.isEmpty
+    final CartModel cart = Provider.of<CartModel>(context);
+    return cart.items.isEmpty
         ? Center(
             child: Text(
               "Buy items from the home page it's Empty!",
@@ -97,21 +91,21 @@ class _CartList extends StatelessWidget {
             ),
           )
         : ListView.builder(
-            itemCount: _cart.items.length,
+            itemCount: cart.items.length,
             itemBuilder: (context, index) => ListTile(
               leading: Icon(
                 Icons.done,
                 color: Theme.of(context).iconTheme.color,
               ),
               trailing: IconButton(
-                onPressed: () => RemoveMutation(_cart.items[index]),
+                onPressed: () => cart.remove(cart.items[index]),
                 icon: Icon(
                   Icons.remove_circle_outline,
                   color: Theme.of(context).iconTheme.color,
                 ),
               ),
               title: Text(
-                _cart.items[index].name,
+                cart.items[index].name,
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
             ),
